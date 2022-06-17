@@ -8,17 +8,17 @@ class TestDecorator(unittest.TestCase):
 
     @limits(calls=1, period=10, clock=clock)
     def increment(self):
-        '''
+        """
         Increment the counter at most once every 10 seconds.
-        '''
+        """
         self.count += 1
 
     @limits(calls=1, period=10, clock=clock, raise_on_limit=False)
     def increment_no_exception(self):
-        '''
+        """
         Increment the counter at most once every 10 seconds, without raising an exception when
         reaching the rate limit.
-        '''
+        """
         self.count += 1
 
     @limits(
@@ -27,13 +27,13 @@ class TestDecorator(unittest.TestCase):
         clock=clock,
         raise_on_limit=False,
         threshold=0.5,
-        threshold_method=threshold_method
+        threshold_method=threshold_method,
     )
     def increment_threshold_no_exception(self):
-        '''
+        """
         Increment the counter at most once every 10 seconds, invoking the threshold method when
         the threshold is reached, without raising an exception when reaching the rate limit.
-        '''
+        """
         self.count += 1
 
     @limits(
@@ -42,13 +42,13 @@ class TestDecorator(unittest.TestCase):
         clock=clock,
         raise_on_limit=True,
         threshold=0.5,
-        threshold_method=threshold_method
+        threshold_method=threshold_method,
     )
     def increment_threshold(self):
-        '''
+        """
         Increment the counter at most once every 10 seconds, triggering the threshold method when
         the threshold is reached, while raising an exception when reaching the rate limit.
-        '''
+        """
         self.count += 1
 
     def setUp(self):
